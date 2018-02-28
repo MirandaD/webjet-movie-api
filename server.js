@@ -1,12 +1,13 @@
 'use strict'
 const express = require('express')
-const movieController = require('./movie-controller')
+const MovieController = require('./movie-controller')
 const app = express()
 const needle = require('needle')
 
-app.get('/movie-list', (req, res) => {
-
+const movieController = MovieController.create({
+    needle: needle
 })
+app.get('/movie-list', movieController.getMovieList)
 
 app.get('/movie/:movieId', (req, res) => {
     
