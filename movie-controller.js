@@ -42,6 +42,8 @@ module.exports.create = (externalLib) => {
     })
     return Promise.all(getMoviesPromiseArray)
       .then(() => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.send(movieModel._mergeMovies(movies))
       })
   }
