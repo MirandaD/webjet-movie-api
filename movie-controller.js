@@ -56,10 +56,14 @@ module.exports.create = (externalLib) => {
     }
     return movieModel.getMovieDetailsByMoveObj(movieObj)
       .then((returnRes) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.send(returnRes)
       })
       .catch(err => {
         console.log(err)
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.status(500).send()
       })
     .catch(next)
