@@ -45,7 +45,6 @@ module.exports = (externalLib) => {
             _.assign(movieDetail, response.body)
             const price = response.body.Price
             movieDetail.prices.push({ url: url, price: price })
-            console.log(movieDetail)
           }
         })
         .catch(() => {

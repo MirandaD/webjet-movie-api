@@ -48,25 +48,22 @@ module.exports.create = (externalLib) => {
       })
   }
 
-  const getDetailsByTitleAndYear = function (req, res, next){
+  const getDetailsByTitleAndYear = function (req, res) {
+    console.log('======')
     const movieObj = _.get(req, 'body')
     if (!movieObj || _.isEmpty(movieObj)) {
-      console.log(ERROR_INVALID, req)
+      console.log(ERROR_INVALID)
       return res.status(400).send()
     }
     return movieModel.getMovieDetailsByMoveObj(movieObj)
       .then((returnRes) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        console.log(returnRes)
         return res.send(returnRes)
       })
       .catch(err => {
         console.log(err)
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.status(500).send()
       })
-    .catch(next)
   }
   return {
     getMovieList: getMovieList,
